@@ -1,7 +1,6 @@
 from random import choice
 import sys
 
-from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 from datacenter.models import Schoolkid, Mark, Chastisement, Commendation, Lesson
 
@@ -58,10 +57,10 @@ def get_lesson(year_of_study, group_letter, subject):
         year_of_study=year_of_study,
         group_letter=group_letter,
         subject__title=subject).order_by('?').first()
-    return lesson
     if lesson is None:
         print(f'Урок {subject} в базе не найден')
         sys.exit()
+    return lesson
 
 
 def make_commendation(schoolkid, lesson):
